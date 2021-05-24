@@ -76,7 +76,6 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
         mt={[1]}
         pl={4}
         pb={40}
-        bg='black'
         border="1px"
         borderColor={colorStyle}
       >
