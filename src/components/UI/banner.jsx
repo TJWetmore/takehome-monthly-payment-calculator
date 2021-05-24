@@ -13,7 +13,7 @@ const Banner = () => {
       wrap="wrap"
       w="100%"
       p={8}
-      bg={"#56c2b0"}
+      bg="#56c2b0"
     >
       <Text fontSize= {['auto','2xl']} textAlign='center'>Loan Repayment Calculator</Text>
     </Flex>
