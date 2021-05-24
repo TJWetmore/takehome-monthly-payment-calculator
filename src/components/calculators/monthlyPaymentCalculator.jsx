@@ -62,7 +62,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
     <>
 
     <Center>
-      <Stack pt={15, 25, 40} direction="row">
+      <Stack pt={15, 25, 40} pb={40} direction="row">
         <Text p={2} textAlign='center' fontSize='2xl'  textColor="#56c2b0" > Personal Loan </Text>
         <Switch p={3} colorScheme="#56c2b0" size="lg" onChange={() => setCalcType(!calcType)}/>
         <Text p={2} textAlign='center' fontSize='2xl' textColor="#e47a36"> Home Loan </Text>
@@ -70,7 +70,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
     </Center>
     <Container pt={5} colSpan={1} maxW="lg" centerContent>
       <Box
-        w={[300, 325, 1250]}
+        w={['auto', 1250]}
         h={['auto', 'auto']}
         borderRadius='lg'
         mt={[1]}

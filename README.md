@@ -24,5 +24,5 @@
 
 1. I split it out between mortgage loans and pay-day loans to give constraints to the interest amounts. A slider that can go from 2.5% interest to 200% interest with 0.25 increments just isn't as usable as a something that goes from 20% to 200% interest with 2.5% increments. I used 200% and $1,000 as the maximum for payday loans per Fig's standards. And I used 2.5% to 20%, with 5,000 to $1,500,000 as the boundaries for the morgage as something of a ball-park figure for younger americans. 
 
-2. If we really wanted to make this awesome, we would make it a duel interest rate calculator and a budgeting tool. So a user would come in, put in how much they want to borrow and their interest payments, and then they could build out a budgeting tool within the same page to see both if they 
-- For the mortgage calculator
+2. If we really wanted to make this awesome, we would make it a duel interest rate calculator and a budgeting tool. So a user would come in, put in how much they want to borrow and their interest payments, and then they could build out a budgeting tool within the same page to see both how much loan to take and how they could afford it. 
+- It would also be great for the fig brand, if you both made pay-day loans more accessible, and provided financial literacy in the process
