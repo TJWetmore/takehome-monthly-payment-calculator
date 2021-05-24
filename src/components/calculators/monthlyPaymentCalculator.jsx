@@ -70,13 +70,16 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
     </Center>
     </Container>
     <Container pt={5} colSpan={1} maxW="auto" >
+      <Center>
       <Box
         w={{base: 'auto', md: 1100}}
         h={['auto', 'auto']}
         borderRadius='lg'
         mt={[1]}
+        pl={4}
         border="1px"
         borderColor={colorStyle}
+        isCentered
       >
         <Grid templateColumns={{base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)"}} templateRows={{base: "repeat(2, 1fr)", lg: "repeat(1, 1fr)"}}> 
 
@@ -129,7 +132,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
           <GridItem pt={2} colSpan={["1", "2"]} rowSpan="1">
             <Text textAlign='right' fontSize={['md', 'xl']}>Repayment Months</Text>
           </GridItem>
-          <GridItem pt={2} colSpan={["3", "2"]} rowSpan="1">
+          <GridItem pt={2} colSpan={["3", "2"]}rowSpan="1">
           <NumberInput min={1} max={12} value={loanLengthMonths} onChange={val => setLoanLengthMonths(Number(val))}>
               <NumberInputField />
               <NumberInputStepper>
@@ -209,6 +212,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
 
         </Grid>
     </Box>
+    </Center>
     </Container>
     </>
   );
