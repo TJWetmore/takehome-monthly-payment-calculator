@@ -1,54 +1,28 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal starter
-</h1>
 
-## 🚀 Quick start
+**Loan Calculator**
 
-1.  **Create a Gatsby site.**
+    Thank you for taking a look at this repo. You'll notice a couple things...
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+1.  **It's built in gatsby.js as the frontend framework**
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+    I chose this framework environment because:
+    - It automatically bundles a super fast webpack config. If we were to add additional pages it would be super fast between the mulitple pages
+    - It is a static site, which is pretty much all we need for this project because there's no server communications and all calculations are done in the browswer. 
+    - Honestly, the 'make-gatsby-app' sets everything up really really quickly. It's nice. 
 
-2.  **Start developing.**
+2.  **I'm using Chakra UI as the CSS component Library**
 
-    Navigate into your new site’s directory and start it up.
+    I find Chakra UI to be easier to read for the developer, as they label their components in an intuitive manner (e.g., `<Text>`, `<Container>`, `<Slider>`, `<NumberInput>`) when compared to something like Bootstrap. Further, they have some additioanl features that Bootstrap does not have, so the development process is much smoother
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+3.  **I'm doing unit testing with Cypress**
 
-3.  **Open the code and start customizing!**
+    While Cypress is typically used for E2E (end-to-end) testing, it really is an all-in-one framework. E2E and integration tests aren't really necessary for the scale of this project. A simple unit test is plenty sufficient. 
 
-    Your site is now running at http://localhost:8000!
+    I am using cypress because it's easy to use and fun to watch the app interact in the testing environment.  
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+## Other Thoughts
 
-4.  **Learn more**
+1. I split it out between mortgage loans and pay-day loans to give constraints to the interest amounts. A slider that can go from 2.5% interest to 200% interest with 0.25 increments just isn't as usable as a something that goes from 20% to 200% interest with 2.5% increments. I used 200% and $1,000 as the maximum for payday loans per Fig's standards. And I used 2.5% to 20%, with 5,000 to $1,500,000 as the boundaries for the morgage as something of a ball-park figure for younger americans. 
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal)
+2. If we really wanted to make this awesome, we would make it a duel interest rate calculator and a budgeting tool. So a user would come in, put in how much they want to borrow and their interest payments, and then they could build out a budgeting tool within the same page to see both if they 
+- For the mortgage calculator

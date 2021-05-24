@@ -4,10 +4,10 @@ import { Link } from "gatsby"
 // markup
 const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
+    <main >
       <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
+      <h1 >Page not found</h1>
+      <p >
         Sorry{" "}
         <span role="img" aria-label="Pensive emoji">
           😔

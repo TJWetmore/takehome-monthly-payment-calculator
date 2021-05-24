@@ -7,39 +7,40 @@ const PaymentCalculator = () => {
   // true = personal loan, false = mortgage
   const [calcType, setCalcType] = useState(true)
 
+  //could have used an object for all this data, but trickier to setState inline with the data needed, so used 5 separate variables 
   const [loanAmount, setLoanAmount] = useState(50)
   const [loanLengthMonths, setLoanLengthMonths] = useState(1)
   const [loanLengthYears, setLoanLengthYears] = useState(1)
   const [interestRate, setInterestRate] = useState(2.5)
   const [monthlyPayment, setMonthlyPayment] = useState(50)
 
+  // not the most elegant solution, but wanted to break it out step-by-step for read ability. 
   let calculatePayments = () => {
     let pv = loanAmount;
     let i = (interestRate / 100) / 12;
+    // need to convert loan lengths for both months and years 
     let n;
     calcType ? n = loanLengthMonths : n = loanLengthYears * 12;
 
-    // P = L[c(1 + c)n]/[(1 + c)n - 1]
-    // L dollars over a term of 
-    // n months at a 
-    // monthly interest rate of c (APR/12 ).
-
+    // numerator and denominator split out for readability and to ensure accuracy
     let numer = pv* (i * (1 + i)**n);
     let denom = (1 + i)**n - 1;
     let a = (numer / denom);
-
     let num = parseFloat(parseFloat(a).toFixed(2)).toLocaleString('en-EN', { useGrouping: true });
     setMonthlyPayment(num);
   }
 
 
+  // added a use effect that is triggered by any change in the browser to recalculate for real-time payment needs
   useEffect(() => {
     calculatePayments()
   }, [loanAmount, loanLengthMonths, loanLengthYears, interestRate]);
 
+  // defining the key variables for the execution of the calculator 
   let montlyLoansConstraints = {minTime: 1, maxTime: 12, minLoan: 50, maxLoan: 1000, loanSteps:50, minInterest: 20, maxInterest: 200, interestSteps: 2.5}
   let yearlyLoansConstraints = {minTime : 1, maxTime: 30, minLoan: 5000, maxLoan: 1500000, loanSteps: 2500, minInterest: 2.5, maxInterest: 20, interestSteps: 0.25}
 
+  // resets the variables everytime 'mortgage' or 'payday' is clicked
   useEffect(() => {
     if (calcType){
       setLoanAmount(montlyLoansConstraints.minLoan)
@@ -56,7 +57,7 @@ const PaymentCalculator = () => {
   
 let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
 
-
+// used Chakra UI instead of bootstrap because it 
   return (
     <>
 
