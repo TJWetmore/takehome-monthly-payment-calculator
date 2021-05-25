@@ -57,15 +57,15 @@ const PaymentCalculator = () => {
   
 let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
 
-// used Chakra UI instead of bootstrap because it 
+// used Chakra UI instead of bootstrap because it easier to read imo
   return (
     <>
     <Container maxW="auto" >
     <Center>
       <Stack pt={15, 25, 40} direction="row">
-        <Text p={2} textAlign='center' fontSize={['xl', '2xl']}  textColor="#56c2b0" > Personal Loan </Text>
-        <Switch p={3} colorScheme="#56c2b0" size="lg" onChange={() => setCalcType(!calcType)}/>
-        <Text p={2} textAlign='center' fontSize={['xl', '2xl']} textColor="#e47a36"> Home Loan </Text>
+        <Text p={2} textAlign='center' className='toggleOptionsPersonal' fontSize={['xl', '2xl']}  textColor="#56c2b0" > Personal Loan </Text>
+        <Switch p={3} colorScheme="#56c2b0" size="lg" className='loanTypeToggle' onChange={() => setCalcType(!calcType)}/>
+        <Text p={2} textAlign='center' className='toggleOptionsMortgage' fontSize={['xl', '2xl']} textColor="#e47a36"> Home Loan </Text>
       </Stack>
     </Center>
     </Container>
@@ -79,23 +79,22 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
         pl={4}
         border="1px"
         borderColor={colorStyle}
-        isCentered
       >
-        <Grid templateColumns={{base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)"}} templateRows={{base: "repeat(2, 1fr)", lg: "repeat(1, 1fr)"}}> 
+        <Grid  templateColumns={{base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)"}} templateRows={{base: "repeat(2, 1fr)", lg: "repeat(1, 1fr)"}}> 
 
-          <GridItem colSpan={{base: "0", lg: "1"}} rowSpan={{base: "0", lg: "1"}} >
-            <Text fontSize= {['3xl', '7xl']} textAlign='center' textColor={colorStyle}>${loanAmount.toLocaleString('en-US')}</Text>
-            <Text fontSize= {['lx', '2xl']}  textAlign='center'>Loan Amount</Text>
+          <GridItem  colSpan={{base: "0", lg: "1"}} rowSpan={{base: "0", lg: "1"}} >
+            <Text fontSize= {['3xl', '7xl']} className='loanHeadlineNumeric' textAlign='center' textColor={colorStyle}>${loanAmount.toLocaleString('en-US')}</Text>
+            <Text fontSize= {['lx', '2xl']}  className='loanHeadline' textAlign='center'>Loan Amount</Text>
           </GridItem>     
-          <GridItem colSpan={["0", "1"]} >
-            <Text fontSize= {['3xl', '7xl']} textAlign='center' textColor={colorStyle}>${monthlyPayment}</Text>
-            <Text fontSize= {['lx', '2xl']} textAlign='center'>Monthly Payments</Text>
+          <GridItem  colSpan={["0", "1"]} >
+            <Text fontSize= {['3xl', '7xl']} className='paymentHeadlineNumeric' textAlign='center' textColor={colorStyle}>${monthlyPayment}</Text>
+            <Text fontSize= {['lx', '2xl']} className='paymentHeadline' textAlign='center'>Monthly Payments</Text>
           </GridItem>      
         </Grid>
         <Divider pt={2}/>
         <Grid p={6} templateColumns={{base: "repeat(4, 1fr)", lg:"repeat(9, 1fr)"}} templateRows={{base: "repeat(6, 1fr)", lg: "repeat(3, 1fr)"}} gap={6}>
         <GridItem pt={2} colSpan={["1", "2"]} rowSpan="1">
-            <Text textAlign='right' fontSize={['md', 'xl']}>Loan Amount</Text>
+            <Text textAlign='right' className='bodyLoanAmount' fontSize={['md', 'xl']}>Loan Amount</Text>
         </GridItem>
         <GridItem pt={2} colSpan={["3", "2"]}rowSpan="1">
             <NumberInput 
@@ -104,7 +103,9 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
             step={calcType ? montlyLoansConstraints.loanSteps : yearlyLoansConstraints.loanSteps} 
             value={`$${loanAmount.toLocaleString('en-US')}`} 
             onChange={val => setLoanAmount(Number(val))}>
-              <NumberInputField />
+              <NumberInputField 
+              className='bodyLoanAmountInput'
+               />
               <NumberInputStepper>
                 <NumberIncrementStepper />
                 <NumberDecrementStepper />
@@ -112,7 +113,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
             </NumberInput>
         </GridItem>
           <GridItem ml={5} mr={12} pr={1} colSpan={{base: "4", lg: "5"}} rowSpan="1">
-            <Slider name='loanAmount' focusThumbOnChange={false} 
+            <Slider name='loanAmount' className='bodyLoanSlider' focusThumbOnChange={false} 
             value={loanAmount} 
             min={calcType ? montlyLoansConstraints.minLoan : yearlyLoansConstraints.minLoan} 
             max={calcType ? montlyLoansConstraints.maxLoan : yearlyLoansConstraints.maxLoan} 
@@ -130,11 +131,11 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
           {calcType ? 
           <>
           <GridItem pt={2} colSpan={["1", "2"]} rowSpan="1">
-            <Text textAlign='right' fontSize={['md', 'xl']}>Repayment Months</Text>
+            <Text textAlign='right' className='bodyRepaymentMonths' fontSize={['md', 'xl']}>Repayment Months</Text>
           </GridItem>
           <GridItem pt={2} colSpan={["3", "2"]}rowSpan="1">
-          <NumberInput min={1} max={12} value={loanLengthMonths} onChange={val => setLoanLengthMonths(Number(val))}>
-              <NumberInputField />
+          <NumberInput min={1} max={12}  value={loanLengthMonths} onChange={val => setLoanLengthMonths(Number(val))}>
+              <NumberInputField className='bodyRepaymentMonthsInput' />
               <NumberInputStepper>
                 <NumberIncrementStepper />
                 <NumberDecrementStepper />
@@ -143,7 +144,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
           </GridItem>
 
           <GridItem ml={5} mr={12} pr={1} colSpan={{base: "4", lg: "5"}} rowSpan="1">
-            <Slider name='loanAmount' focusThumbOnChange={false} value={loanLengthMonths} min={1} max={12} step={1} onChange={(val) => setLoanLengthMonths(val) }>
+            <Slider name='loanAmount' className='bodyRepaymentMonthsSlider' focusThumbOnChange={false} value={loanLengthMonths} min={1} max={12} step={1} onChange={(val) => setLoanLengthMonths(val) }>
               <SliderTrack bg="grey">
                 <Box position="relative" right={10} />
                 <SliderFilledTrack bg={colorStyle} />
@@ -156,11 +157,11 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
           :
           <>
           <GridItem pt={2} colSpan={["1", "2"]} rowSpan="1">
-            <Text textAlign='right' fontSize={['md', 'xl']}>Repayment Years</Text>
+            <Text textAlign='right' className='bodyRepaymentYears' fontSize={['md', 'xl']}>Repayment Years</Text>
           </GridItem>
           <GridItem pt={2} colSpan={["3", "2"]} rowSpan="1">
           <NumberInput min={1} max={30} value={loanLengthYears} onChange={val => setLoanLengthYears(Number(val))}>
-              <NumberInputField />
+              <NumberInputField className='bodyRepaymentYearsInput'/>
               <NumberInputStepper>
                 <NumberIncrementStepper />
                 <NumberDecrementStepper />
@@ -168,7 +169,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
             </NumberInput>
           </GridItem>
           <GridItem ml={5} mr={12} pr={1} colSpan={{base: "4", lg: "5"}} rowSpan="1">
-            <Slider name='loanAmount' value={loanLengthYears} min={1} max={30} step={1} onChange={(val) => setLoanLengthYears(val) }>
+            <Slider name='loanAmount' className='bodyRepaymentSlider' value={loanLengthYears} min={1} max={30} step={1} onChange={(val) => setLoanLengthYears(val) }>
                 <SliderTrack bg="grey">
                   <SliderFilledTrack bg={colorStyle} />
                 </SliderTrack>
@@ -178,7 +179,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
           </>
           }
           <GridItem pt={2} colSpan={["1", "2"]} rowSpan="1">
-            <Text textAlign='right' fontSize={['md', 'xl']}>Interest Rate (ARP)</Text>
+            <Text textAlign='right' className='bodyInterestRate' fontSize={['md', 'xl']}>Interest Rate (APR)</Text>
           </GridItem>
           <GridItem pt={2} colSpan={["3", "2"]} rowSpan="1">
           <NumberInput 
@@ -188,7 +189,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
           value = {`${interestRate}%`}
           onChange={val => setInterestRate(val)}
           >
-            <NumberInputField />
+            <NumberInputField className='bodyInterestRateInput'/>
               <NumberInputStepper>
                 <NumberIncrementStepper />
                 <NumberDecrementStepper />
@@ -196,7 +197,7 @@ let colorStyle = (calcType ? "#56c2b0" : "#e47a36");
             </NumberInput>
           </GridItem>
           <GridItem ml={5} mr={12} pr={1} colSpan={{base: "4", lg: "5"}} rowSpan="1">
-          <Slider name='interestRate' id='interestRateSlider' 
+          <Slider name='interestRate' className='bodyInterestRateSlider' 
           value={interestRate} 
           min= {calcType ? montlyLoansConstraints.minInterest  : yearlyLoansConstraints.minInterest } 
           max= {calcType ? montlyLoansConstraints.maxInterest : yearlyLoansConstraints.maxInterest} 
